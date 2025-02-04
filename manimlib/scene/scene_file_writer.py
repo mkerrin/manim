@@ -7,7 +7,10 @@ import subprocess as sp
 import sys
 
 import numpy as np
-from pydub import AudioSegment
+try:
+    from pydub import AudioSegment
+except ImportError:
+    pass
 from tqdm.auto import tqdm as ProgressDisplay
 from pathlib import Path
 
