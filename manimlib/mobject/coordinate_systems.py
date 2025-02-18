@@ -511,6 +511,12 @@ class Axes(VGroup, CoordinateSystem):
             for axis in self.get_axes()
         ])
 
+    def get_x_unit_size(self) -> float:
+        return self.get_x_axis().get_unit_size()
+
+    def get_y_unit_size(self) -> list:
+        return self.get_x_axis().get_unit_size()
+
     def get_axes(self) -> VGroup:
         return self.axes
 
@@ -710,15 +716,6 @@ class NumberPlane(Axes):
             else:
                 lines2.add(new_line)
         return lines1, lines2
-
-    def get_x_unit_size(self) -> float:
-        return self.get_x_axis().get_unit_size()
-
-    def get_y_unit_size(self) -> list:
-        return self.get_x_axis().get_unit_size()
-
-    def get_axes(self) -> VGroup:
-        return self.axes
 
     def get_vector(self, coords: Iterable[float], **kwargs) -> Arrow:
         kwargs["buff"] = 0
