@@ -263,8 +263,8 @@ class VectorField(VMobject):
         output_norms = np.linalg.norm(outputs, axis=1)[:, np.newaxis]
 
         # Corresponding vector values in global coordinates
-        out_vects = self.coordinate_system.c2p(*outputs.T) - self.coordinate_system.get_origin()
-        out_vect_norms = np.linalg.norm(out_vects, axis=1)[:, np.newaxis]
+        out_vects = outputs  # self.coordinate_system.c2p(*outputs.T) - self.coordinate_system.get_origin()
+        out_vect_norms = output_norms  # np.linalg.norm(out_vects, axis=1)[:, np.newaxis]
         unit_outputs = np.zeros_like(out_vects)
         np.true_divide(out_vects, out_vect_norms, out=unit_outputs, where=(out_vect_norms > 0))
 
