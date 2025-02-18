@@ -134,6 +134,8 @@ class NumberLine(Line):
     def number_to_point(self, number: float | VectN) -> Vect3 | Vect3Array:
         start = self.get_points()[0]
         end = self.get_points()[-1]
+        if self.x_max == 0. and self.x_min == 0.:
+            return start
         alpha = (number - self.x_min) / (self.x_max - self.x_min)
         return outer_interpolate(start, end, alpha)
 
