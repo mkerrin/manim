@@ -301,9 +301,10 @@ class VectorField(VMobject):
             if self.color_map is not None:
                 self.get_stroke_colors()  # Ensures the array is updated to appropriate length
                 low, high = self.magnitude_range
-                self.data['stroke_rgba'][:, :3] = self.color_map(
-                    inverse_interpolate(low, high, np.repeat(output_norms, 8)[:-1])
-                )[:, :3]
+                if low != high:
+                    self.data['stroke_rgba'][:, :3] = self.color_map(
+                        inverse_interpolate(low, high, np.repeat(output_norms, 8)[:-1])
+                    )[:, :3]
 
             if self.norm_to_opacity_func is not None:
                 self.get_stroke_opacities()[:] = self.norm_to_opacity_func(
